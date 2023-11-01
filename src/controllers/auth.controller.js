@@ -25,7 +25,11 @@ export const register = async (req, res) => {
 
         const token = await createAccessToken({ id: userSaved._id })
 
-        res.cookie('token', token)
+        res.cookie('token', token, {
+            httpOnly: process.env.NODE_ENV !== "development",
+            secure: true,
+            sameSite: "none",
+        })
         res.status(201).json({
             id: userSaved._id,
             username: userSaved.username,
@@ -55,7 +59,11 @@ export const login = async (req, res) => {
 
         const token = await createAccessToken({ id: userFound._id })
 
-        res.cookie('token', token)
+        res.cookie('token', token, {
+            httpOnly: process.env.NODE_ENV !== "development",
+            secure: true,
+            sameSite: "lax",
+        })
         res.json({
             id: userFound._id,
             username: userFound.username,
