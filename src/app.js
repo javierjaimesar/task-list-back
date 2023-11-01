@@ -8,26 +8,14 @@ import taskRoutes from './routes/task.routes.js';
 
 const app = express();
 
-app.use(cors({
+const corsOptions = {
     origin: 'https://javier-task-list.netlify.app', // Dominio permitido
     methods: 'GET,POST,PUT,DELETE', // Métodos HTTP permitidos
     allowedHeaders: 'Content-Type,Authorization', // Cabeceras personalizadas permitidas
     credentials: true, // Permitir enviar cookies
-}));
+};
 
-app.use(cors({
-    origin: 'https://javier-task-list.netlify.app/login', // Dominio permitido
-    methods: 'GET,POST,PUT,DELETE', // Métodos HTTP permitidos
-    allowedHeaders: 'Content-Type,Authorization', // Cabeceras personalizadas permitidas
-    credentials: true, // Permitir enviar cookies
-}));
-
-app.use(cors({
-    origin: 'https://javier-task-list.netlify.app/register', // Dominio permitido
-    methods: 'GET,POST,PUT,DELETE', // Métodos HTTP permitidos
-    allowedHeaders: 'Content-Type,Authorization', // Cabeceras personalizadas permitidas
-    credentials: true, // Permitir enviar cookies
-}));
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(morgan('dev'));
