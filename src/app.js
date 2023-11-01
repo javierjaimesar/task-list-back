@@ -2,6 +2,7 @@ import express from 'express';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 
 import authRoutes from './routes/auth.routes.js';
 import taskRoutes from './routes/task.routes.js';
@@ -15,6 +16,8 @@ const corsOptions = {
     allowedHeaders: 'Content-Type,Authorization', // Cabeceras personalizadas permitidas
 };
 
+app.use(cookieParser());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(morgan('dev'));
