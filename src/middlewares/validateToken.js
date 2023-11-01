@@ -5,7 +5,7 @@ export const authRequire = (req, res, next) => {
     const { token } = req.cookies;
 
     if (!token) {
-        return res.status(401).json({ message: 'Unauthorized' });
+        return res.status(401).json({ message: 'Unauthorized validateToken' });
     }
 
     jwt.verify(token, TOKEN_SECRET, (err, user) => {
