@@ -4,7 +4,7 @@ import { TOKEN_SECRET } from '../config.js';
 export const authRequire = (req, res, next) => {
     const { token } = req.cookies;
 
-    console.log(req.cookies.token);
+    console.log(req.cookies);
 
     if (!token) {
         return res.status(401).json({ message: 'Unauthorized validateToken' });
