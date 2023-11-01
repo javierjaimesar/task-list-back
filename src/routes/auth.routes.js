@@ -6,14 +6,14 @@ import { registerSchema, loginSchema } from '../validations/auth.schema.js';
 
 const router = Router();
 
-router.post('/register', validateSchema(registerSchema), register)
+router.post('/api/register', validateSchema(registerSchema), register)
 
-router.post('/login', validateSchema(loginSchema), login)
+router.post('/api/login', validateSchema(loginSchema), login)
 
-router.post('/logout', logout)
+router.post('/api/logout', logout)
 
-router.get('/verify', verifyToken)
+router.get('/api/verify', verifyToken)
 
-router.get('/profile', authRequire, profile)
+router.get('/api/profile', authRequire, profile)
 
 export default router;

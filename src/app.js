@@ -10,16 +10,16 @@ const app = express();
 
 const corsOptions = {
     origin: 'https://javier-task-list.netlify.app', // Dominio permitido
+    credentials: true, // Permitir enviar cookies
     methods: 'GET,POST,PUT,DELETE', // Métodos HTTP permitidos
     allowedHeaders: 'Content-Type,Authorization', // Cabeceras personalizadas permitidas
-    credentials: true, // Permitir enviar cookies
 };
 
-app.use(cors(corsOptions)); 
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(cookieParser());
-app.use('/api', authRoutes)
-app.use('/api', taskRoutes)
+app.use(authRoutes)
+app.use(taskRoutes)
 
 export default app;
