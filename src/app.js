@@ -9,7 +9,7 @@ import taskRoutes from './routes/task.routes.js';
 const app = express();
 
 const corsOptions = {
-    origin: 'https://javier-task-list.netlify.app', // Dominio permitido
+    origin: ['https://javier-task-list.netlify.app', 'http://localhost:5173'], // Dominio permitido
     credentials: true, // Permitir enviar cookies
     methods: 'GET,POST,PUT,DELETE', // Métodos HTTP permitidos
     allowedHeaders: 'Content-Type,Authorization', // Cabeceras personalizadas permitidas
