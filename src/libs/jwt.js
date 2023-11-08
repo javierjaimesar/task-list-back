@@ -7,6 +7,7 @@ export const createAccessToken = (payload) => {
             payload,
             TOKEN_SECRET,
             {
+                algorithm: 'HS256',
                 expiresIn: '1h'
             },
             (err, token) => {

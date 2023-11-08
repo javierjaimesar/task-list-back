@@ -48,22 +48,21 @@ export const login = async (req, res) => {
     try {
         const userFound = await User.findOne({ email })
         if (!userFound) {
-            return res.status(400).json(['Email not found'])
+            return res.status(401).json(['Email not found'])
         }
 
         const isMatch = await bcrypt.compare(password, userFound.password)
 
         if (!isMatch) {
-            return res.status(400).json(['Invalid password'])
+            return res.status(401).json(['Invalid password'])
         }
+
+        console.log(userFound);
+        req.user = userFound;
 
         const token = await createAccessToken({ id: userFound._id })
 
-        res.cookie('token', token, {
-            httpOnly: true,
-            secure: true,
-            sameSite: "lax",
-        })
+        res.cookie('token', token)
         res.json({
             id: userFound._id,
             username: userFound.username,
@@ -107,6 +106,7 @@ export const profile = async (req, res) => {
 
 export const verifyToken = async (req, res) => {
     try {
+        console.log(req.cookies);
         const { token } = req.cookies
         if (!token) return res.status(401).json({ message: 'Unauthorized varityToken 1' })
 

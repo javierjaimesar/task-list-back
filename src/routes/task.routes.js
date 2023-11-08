@@ -3,10 +3,12 @@ import { Router } from 'express';
 import { getTasks, getTask, createTask, deleteTask, updateTask } from '../controllers/task.controller.js';
 import { validateSchema } from '../middlewares/validator.middleware.js';
 import { createTaskSchema } from '../validations/task.schema.js';
+import { verifyToken } from '../controllers/auth.controller.js';
+import { authRequire } from '../middlewares/validateToken.js';
 
 const router = Router();
 
-router.get('/task', getTasks)
+router.get('/task', authRequire, getTasks)
 router.get('/task/:id', getTask)
 router.post('/task', validateSchema(createTaskSchema), createTask)
 router.delete('/task/:id', deleteTask)
