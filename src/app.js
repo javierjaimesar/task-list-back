@@ -15,7 +15,7 @@ const corsOptions = {
 };
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', 'https://javier-task-list.netlify.app');
-    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Credentials', true);
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Origin,Content-Type, Authorization, Content-Length, X-Requested-With, Accept');
     next();
