@@ -63,6 +63,8 @@ export const login = async (req, res) => {
         const token = await createAccessToken({ id: userFound._id })
 
         res.cookie('token', token, {
+            domain: '.javier-task-list.netlify.app', // Configura el dominio al que pertenece la cookie (incluye un punto inicial)
+            path: '/ruta', // Configura la ruta en la que la cookie es válida
             maxAge: 3600,
             httpOnly: false,
             secure: false,
