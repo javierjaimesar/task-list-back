@@ -9,8 +9,8 @@ import { authRequire } from '../middlewares/validateToken.js';
 const router = Router();
 
 router.get('/task', authRequire, getTasks)
-router.get('/task/:id', getTask)
-router.post('/task', validateSchema(createTaskSchema), createTask)
+router.get('/task/:id', authRequire, getTask)
+router.post('/task', validateSchema(createTaskSchema), authRequire, createTask)
 router.delete('/task/:id', deleteTask)
 router.put('/task/:id', updateTask)
 

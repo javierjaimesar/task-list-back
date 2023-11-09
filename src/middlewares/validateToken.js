@@ -2,7 +2,9 @@ import jwt from 'jsonwebtoken';
 import { TOKEN_SECRET } from '../config.js';
 
 export const authRequire = (req, res, next) => {
-    const { token } = req.cookies;
+    const token = (req.headers.cookie).split('=')[1];
+
+    console.log((req.headers.cookie).split('=')[1]);
 
     if (!token) {
         return res.status(401).json({ message: 'Unauthorized validateToken' });

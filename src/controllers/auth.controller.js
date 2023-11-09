@@ -57,7 +57,6 @@ export const login = async (req, res) => {
             return res.status(401).json(['Invalid password'])
         }
 
-        console.log(userFound);
         req.user = userFound;
 
         const token = await createAccessToken({ id: userFound._id })
