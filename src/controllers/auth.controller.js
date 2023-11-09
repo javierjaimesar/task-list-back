@@ -57,11 +57,16 @@ export const login = async (req, res) => {
             return res.status(401).json(['Invalid password'])
         }
 
+        console.log(userFound);
         req.user = userFound;
 
         const token = await createAccessToken({ id: userFound._id })
 
-        res.cookie('token', token)
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: "lax",
+        })
         res.json({
             id: userFound._id,
             username: userFound.username,
@@ -105,7 +110,6 @@ export const profile = async (req, res) => {
 
 export const verifyToken = async (req, res) => {
     try {
-        console.log(req.cookies);
         const { token } = req.cookies
         if (!token) return res.status(401).json({ message: 'Unauthorized varityToken 1' })
 
